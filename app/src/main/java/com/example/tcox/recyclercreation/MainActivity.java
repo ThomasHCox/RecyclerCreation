@@ -24,6 +24,17 @@ import java.util.Random;
 //text view in the upper left
 //button in the lower left
 //text view centered right
+
+//Homework 16
+//How to make an HTTP request in Android
+//Figure out HTTP verbs, specifically GET and POST
+//But also PUT and DELETE
+//Familiarize with the Android class ASyncTask(this is for background operations)
+//Create an ASyncTask
+//Make a button that executes the ASyncTask
+
+
+
 public class MainActivity extends AppCompatActivity {
     private List<Advertisement> mList = new ArrayList<Advertisement>();
     private RecyclerAdapter mAdapter;
