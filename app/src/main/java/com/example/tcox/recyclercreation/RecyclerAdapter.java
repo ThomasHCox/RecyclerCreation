@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tcox.recyclercreation.interfaces.IListener;
-import com.example.tcox.recyclercreation.model.Advertisement;
+import com.example.tcox.recyclercreation.models.Advertisement;
 import com.example.tcox.recyclercreation.viewholders.AdViewHolder;
 
 import java.util.ArrayList;

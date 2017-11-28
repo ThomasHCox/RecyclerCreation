@@ -1,6 +1,6 @@
 package com.example.tcox.recyclercreation.interfaces;
 
-import com.example.tcox.recyclercreation.model.Advertisement;
+import com.example.tcox.recyclercreation.models.Advertisement;
 
 /**
  * Created by tcox on 11/14/17.

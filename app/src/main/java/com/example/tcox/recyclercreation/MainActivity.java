@@ -1,13 +1,15 @@
 package com.example.tcox.recyclercreation;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.tcox.recyclercreation.interfaces.IListener;
-import com.example.tcox.recyclercreation.model.Advertisement;
+import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedListener;
+import com.example.tcox.recyclercreation.models.Advertisement;
+import com.example.tcox.recyclercreation.models.MobileEngineer;
+import com.example.tcox.recyclercreation.tasks.GetMobileDataTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        Advertisement ads = new Advertisement("Magenta", "Walgreens");
+        fetchArrayList();
         mList.add(createAd());
         mList.add(createAd());
         mList.add(createAd());
@@ -100,4 +103,21 @@ public class MainActivity extends AppCompatActivity {
         Advertisement ads = new Advertisement((adColors.get(rnd.nextInt(adColors.size()))), (adCompany.get(rnd.nextInt(adCompany.size()))));
         return ads;
     }
+
+    public void fetchArrayList(){
+        GetMobileDataTask task = new GetMobileDataTask(new IMobileDataTaskCompletedListener() {
+            @Override
+            public void onMobileDataTaskComplete(ArrayList<MobileEngineer> aMobileEngineer) {
+//                mListAdaptor.setItems(aMobileEngineer);
+//                mListAdaptor.notifyDataSetChanged();
+                int count = aMobileEngineer.size();
+                MobileEngineer engineer = aMobileEngineer.get(0);
+
+            }
+        });
+        task.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+    }
+
 }

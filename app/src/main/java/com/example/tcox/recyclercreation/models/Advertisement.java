@@ -1,4 +1,4 @@
-package com.example.tcox.recyclercreation.model;
+package com.example.tcox.recyclercreation.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
