@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.example.tcox.recyclercreation.interfaces.ICallBackEvent;
 import com.example.tcox.recyclercreation.interfaces.IListener;
 import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedListener;
 import com.example.tcox.recyclercreation.models.Advertisement;
@@ -114,9 +116,18 @@ public class MainActivity extends AppCompatActivity {
                 MobileEngineer engineer = aMobileEngineer.get(0);
 
             }
-        });
-        task.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
+        }, new ICallBackEvent() {
+            @Override
+            public void onComplete(ArrayList<MobileEngineer> aMobileEngineer) {
+                
+            }
 
+            @Override
+            public void onError(Exception e) {
+                Toast.makeText(getApplicationContext(), "There was an error", Toast.LENGTH_LONG).show();
+            }
+        });
+        task.execute();
 
     }
 
