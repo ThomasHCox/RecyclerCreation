@@ -37,6 +37,9 @@ import java.util.Random;
 //Create an ASyncTask
 //Make a button that executes the ASyncTask
 
+//Homework 17
+//Make the cool looking layout with one relative layout
+//Extra Credit: Use 3rd party library called Picaso to load the images
 
 public class MainActivity extends AppCompatActivity {
     private List<MobileEngineer> mList = new ArrayList<MobileEngineer>();
