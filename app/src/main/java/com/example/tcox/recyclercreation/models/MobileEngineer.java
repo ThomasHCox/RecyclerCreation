@@ -10,12 +10,14 @@ public class MobileEngineer {
     private String mBirthdate;
     private String mStartDate;
     private String mAvatar;
+    private String mHobbies;
+    private String mProject;
 
-    public String getName(){
+    public String getName() {
         return mName;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         mName = name;
     }
 
@@ -51,8 +53,21 @@ public class MobileEngineer {
         this.mAvatar = mAvatar;
     }
 
+    public String getHobbies() {
+        return mHobbies;
+    }
 
+    public void setHobbies(String hobbies) {
+        mHobbies = hobbies;
+    }
 
+    public String getProject() {
+        return mProject;
+    }
+
+    public void setProject(String project) {
+        mProject = project;
+    }
 
 
 }

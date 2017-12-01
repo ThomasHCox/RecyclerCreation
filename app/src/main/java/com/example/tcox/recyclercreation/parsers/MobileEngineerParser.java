@@ -19,7 +19,7 @@ public class MobileEngineerParser {
         ArrayList<MobileEngineer> mobileEngineers = new ArrayList<>();
         JSONObject root = new JSONObject(json);
         JSONArray people = root.getJSONArray("People");
-        for (int i = 0; i < people.length(); i++){
+        for (int i = 0; i < people.length(); i++) {
             JSONObject person = people.getJSONObject(i);
             MobileEngineer mobileEngineer = new MobileEngineer();
             mobileEngineer.setAvatar(person.getString("avatar"));
@@ -27,6 +27,8 @@ public class MobileEngineerParser {
             mobileEngineer.setName(person.getString("name"));
             mobileEngineer.setPosition(person.getString("position"));
             mobileEngineer.setStartDate(person.getString("startdate"));
+            mobileEngineer.setHobbies(person.getString("hobbies"));
+            mobileEngineer.setProject(person.getString("project"));
 
             mobileEngineers.add(mobileEngineer);
         }

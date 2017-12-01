@@ -38,53 +38,28 @@ import java.util.Random;
 //Make a button that executes the ASyncTask
 
 
-
 public class MainActivity extends AppCompatActivity {
-    private List<Advertisement> mList = new ArrayList<Advertisement>();
-    private RecyclerAdapter mAdapter;
+    private List<MobileEngineer> mList = new ArrayList<MobileEngineer>();
+    private EmployeeRecyclerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Advertisement ads = new Advertisement("Magenta", "Walgreens");
         fetchArrayList();
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-        mList.add(createAd());
-//        ads = new Advertisement("Yellow", "CVS");
-//        mList.add(ads);
-////        ads = new Advertisement("Green", "Duane Reade");
-//        mList.add(ads);
-////        ads = new Advertisement("Blue", "Walmart");
-//        mList.add(ads);
-////        ads = new Advertisement("Red", "Target");
-//        mList.add(ads);
         recyclerViewSetup();
         mAdapter.updateAdapter(mList);
     }
 
-    private void recyclerViewSetup(){
+    private void recyclerViewSetup() {
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mAdapter = new RecyclerAdapter(this, new IListener() {
-            @Override
-            public void onAdListener(Advertisement advertisement) {
-//                Intent intent = new Intent(getApplicationContext(), ViewAdActivity.class);
-//                intent.putExtra("AdvertisementParcel", advertisement);
-//                startActivity(intent);
-            }
-        });
+        mAdapter = new EmployeeRecyclerAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public Advertisement createAd(){
+    public Advertisement createAd() {
         List<String> adColors = new ArrayList<>();
         List<String> adCompany = new ArrayList<>();
 
@@ -106,20 +81,20 @@ public class MainActivity extends AppCompatActivity {
         return ads;
     }
 
-    public void fetchArrayList(){
+    public void fetchArrayList() {
         GetMobileDataTask task = new GetMobileDataTask(new IMobileDataTaskCompletedListener() {
             @Override
             public void onMobileDataTaskComplete(ArrayList<MobileEngineer> aMobileEngineer) {
-//                mListAdaptor.setItems(aMobileEngineer);
-//                mListAdaptor.notifyDataSetChanged();
-                int count = aMobileEngineer.size();
-                MobileEngineer engineer = aMobileEngineer.get(0);
-
+                mList.clear();
+                mList.addAll(aMobileEngineer);
+                mAdapter.updateAdapter(mList);
             }
         }, new ICallBackEvent() {
             @Override
             public void onComplete(ArrayList<MobileEngineer> aMobileEngineer) {
-                
+                mList.clear();
+                mList.addAll(aMobileEngineer);
+                mAdapter.updateAdapter(mList);
             }
 
             @Override

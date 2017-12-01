@@ -96,7 +96,7 @@ public class GetMobileDataTask extends AsyncTask<Void, Void, ArrayList<MobileEng
     @Override
     protected void onPostExecute(ArrayList<MobileEngineer> aList) {
         super.onPostExecute(aList);
-        iMobileDataTaskCompletedListener.onMobileDataTaskComplete(aList);
+//        iMobileDataTaskCompletedListener.onMobileDataTaskComplete(aList);
         mCallBackEvent.onComplete(aList);
     }
 
