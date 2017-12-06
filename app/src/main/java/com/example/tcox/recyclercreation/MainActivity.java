@@ -39,6 +39,7 @@ import java.util.Random;
 
 //Homework 17
 //Make the cool looking layout with one relative layout
+//Add the 3-4 line bio to all employees in JSON file
 //Extra Credit: Use 3rd party library called Picaso to load the images
 
 public class MainActivity extends AppCompatActivity {

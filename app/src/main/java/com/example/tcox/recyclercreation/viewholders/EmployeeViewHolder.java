@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.tcox.recyclercreation.R;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -28,9 +29,8 @@ public class EmployeeViewHolder extends RecyclerView.ViewHolder {
     private TextView mEmployeeName;
     private TextView mEmployeeTitle;
     private TextView mEmployeeStartDate;
-    private TextView mEmployeeBirthday;
-    private TextView mEmployeeHobbies;
     private TextView mEmployeeProject;
+    private TextView mBio;
 
     public EmployeeViewHolder(View itemView) {
         super(itemView);
@@ -39,45 +39,16 @@ public class EmployeeViewHolder extends RecyclerView.ViewHolder {
         mEmployeeName = (TextView) itemView.findViewById(R.id.employeeName);
         mEmployeeTitle = (TextView) itemView.findViewById(R.id.employeeTitle);
         mEmployeeStartDate = (TextView) itemView.findViewById(R.id.employeeStartDate);
-        mEmployeeBirthday = (TextView) itemView.findViewById(R.id.employeeBirthDate);
         mEmployeeProject = (TextView) itemView.findViewById(R.id.employeeProject);
-        mEmployeeHobbies = (TextView) itemView.findViewById(R.id.employeeHobbies);
+        mBio = (TextView) itemView.findViewById(R.id.employeeBio);
     }
 
     public void bind(final MobileEngineer engineer) {
         mEmployeeTitle.setText(engineer.getPosition());
-        mEmployeeBirthday.setText(engineer.getBirthdate());
         mEmployeeName.setText(engineer.getName());
         mEmployeeStartDate.setText(engineer.getStartDate());
         mEmployeeProject.setText(engineer.getProject());
-        mEmployeeHobbies.setText(engineer.getHobbies());
-        new DownloadImageTask(mEmployeeAvatar).execute(engineer.getAvatar());
-//        mEmployeeAvatar.setImageBitmap(DownloadImageTask.execute(engineer.getAvatar()););
-    }
-}
-
-
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
-    }
-
-    protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
-        try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        return mIcon11;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        mBio.setText(engineer.getBio());
+        Picasso.with(mContext).load(engineer.getAvatar()).into(mEmployeeAvatar);
     }
 }

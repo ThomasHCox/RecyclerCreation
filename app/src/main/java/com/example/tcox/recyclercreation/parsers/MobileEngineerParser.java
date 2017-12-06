@@ -29,6 +29,7 @@ public class MobileEngineerParser {
             mobileEngineer.setStartDate(person.getString("startdate"));
             mobileEngineer.setHobbies(person.getString("hobbies"));
             mobileEngineer.setProject(person.getString("project"));
+            mobileEngineer.setBio(person.getString("bio"));
 
             mobileEngineers.add(mobileEngineer);
         }

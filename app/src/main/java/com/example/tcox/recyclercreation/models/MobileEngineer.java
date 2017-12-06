@@ -12,6 +12,7 @@ public class MobileEngineer {
     private String mAvatar;
     private String mHobbies;
     private String mProject;
+    private String mBio;
 
     public String getName() {
         return mName;
@@ -69,5 +70,11 @@ public class MobileEngineer {
         mProject = project;
     }
 
+    public String getBio() {
+        return mBio;
+    }
 
+    public void setBio (String bio) {
+        mBio = bio;
+    }
 }

@@ -6,130 +6,96 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/employeeNameHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Name: "
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/EmployeeAvatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="50dp"
-                android:minWidth="50dp" />
+        <TextView
+            android:id="@+id/employeeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/employeeNameHeader"
+            android:text="Employee Name" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <ImageView
+            android:id="@+id/EmployeeAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/employeeNameHeader"
+            android:layout_marginBottom="5dp"
+            android:minHeight="50dp"
+            android:minWidth="50dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Project: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title: "
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/employeeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Name" />
-
-                <TextView
-                    android:id="@+id/employeeProject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Project" />
-
-                <TextView
-                    android:id="@+id/employeeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Title" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/employeeTitleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_below="@id/employeeNameHeader"
+            android:layout_toRightOf="@id/EmployeeAvatar"
+            android:text="Title: "
+            android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hired on: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Born on: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Participates in: "
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/employeeStartDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Start Date" />
-
-                <TextView
-                    android:id="@+id/employeeBirthDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Birthday" />
-
-                <TextView
-                    android:id="@+id/employeeHobbies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Employee Hobby" />
+        <TextView
+            android:id="@+id/employeeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employeeName"
+            android:layout_toRightOf="@id/employeeTitleHeader"
+            android:text="Employee Title" />
 
 
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/employeeStartDateHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employeeTitleHeader"
+            android:layout_toRightOf="@id/EmployeeAvatar"
+            android:text="Hired on: "
+            android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/employeeStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employeeTitle"
+            android:layout_toRightOf="@id/employeeStartDateHeader"
+            android:text="Employee Start Date" />
+
+        <TextView
+            android:id="@+id/employeeProjectHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employeeStartDateHeader"
+            android:layout_toRightOf="@id/EmployeeAvatar"
+            android:text="Project: "
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/employeeProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employeeStartDate"
+            android:layout_toRightOf="@id/employeeProjectHeader"
+            android:text="Employee Project" />
+
+
+        <TextView
+            android:id="@+id/employeeBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EmployeeAvatar"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="This is a sample bio." />
+
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
