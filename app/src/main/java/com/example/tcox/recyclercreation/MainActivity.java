@@ -19,7 +19,7 @@ import java.util.Random;
 
 //Homework 14
 //Make the ads created dynamically
-
+//
 //Homework 15
 //Create an ad layout that is a relative layout
 //It needs to have the name of the company
@@ -28,7 +28,7 @@ import java.util.Random;
 //text view in the upper left
 //button in the lower left
 //text view centered right
-
+//
 //Homework 16
 //How to make an HTTP request in Android
 //Figure out HTTP verbs, specifically GET and POST
@@ -36,11 +36,16 @@ import java.util.Random;
 //Familiarize with the Android class ASyncTask(this is for background operations)
 //Create an ASyncTask
 //Make a button that executes the ASyncTask
-
+//
 //Homework 17
 //Make the cool looking layout with one relative layout
 //Add the 3-4 line bio to all employees in JSON file
 //Extra Credit: Use 3rd party library called Picaso to load the images
+//
+//Homework 18
+//Teach Rich Git
+//Comment out Recyclerview in Main, set up new RecyclerView in Fragment
+
 
 public class MainActivity extends AppCompatActivity {
     private List<MobileEngineer> mList = new ArrayList<MobileEngineer>();
