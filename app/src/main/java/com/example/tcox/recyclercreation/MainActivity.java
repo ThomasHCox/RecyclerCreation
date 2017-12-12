@@ -1,13 +1,12 @@
 package com.example.tcox.recyclercreation;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.tcox.recyclercreation.fragments.EmployeeListFragment;
 import com.example.tcox.recyclercreation.interfaces.ICallBackEvent;
-import com.example.tcox.recyclercreation.interfaces.IListener;
 import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedListener;
 import com.example.tcox.recyclercreation.models.Advertisement;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
@@ -46,21 +45,89 @@ import java.util.Random;
 //Teach Rich Git
 //Comment out Recyclerview in Main, set up new RecyclerView in Fragment
 
+//Homework 19
+//Make the fragments take the lists so that it will show them.
+//Create a new fragment with a simple view
+
 
 public class MainActivity extends AppCompatActivity {
+    //private EmployeeRecyclerAdapter mAdapter;
+
+    private ViewPagerAdapter mViewPagerAdapter;
+    private ViewPager mViewPager;
+    private EmployeeListFragment mFragmentEmployeeDev;
+    private EmployeeListFragment mFragmentEmployeeQA;
+    private EmployeeListFragment mFragmentEmployeeProduct;
     private List<MobileEngineer> mList = new ArrayList<MobileEngineer>();
-    private EmployeeRecyclerAdapter mAdapter;
+    private List<MobileEngineer> mDevList = new ArrayList<>();
+    private List<MobileEngineer> mQAList = new ArrayList<>();
+    private List<MobileEngineer> mProductList = new ArrayList<>();
+    private List<MobileEngineer> mOtherList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        fetchArrayList();
+        // recyclerViewSetup();
+//        mAdapter.updateAdapter(mList);
+        mViewPager = (ViewPager) findViewById(R.id.mainViewPager);
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mFragmentEmployeeDev = new EmployeeListFragment();
+        mFragmentEmployeeProduct = new EmployeeListFragment();
+        mFragmentEmployeeQA = new EmployeeListFragment();
+        mViewPagerAdapter.addFragment(mFragmentEmployeeQA);
+        mViewPagerAdapter.addFragment(mFragmentEmployeeDev);
+        mViewPagerAdapter.addFragment(mFragmentEmployeeProduct);
         fetchArrayList();
-       // recyclerViewSetup();
-        mAdapter.updateAdapter(mList);
+        mViewPager.setAdapter(mViewPagerAdapter);
     }
 
+    public void fetchArrayList() {
+        GetMobileDataTask task = new GetMobileDataTask(new IMobileDataTaskCompletedListener() {
+            @Override
+            public void onMobileDataTaskComplete(ArrayList<MobileEngineer> aMobileEngineer) {
+                mList.clear();
+                mList.addAll(aMobileEngineer);
+//                mAdapter.updateAdapter(mList);
+            }
+        }, new ICallBackEvent() {
+            @Override
+            public void onComplete(ArrayList<MobileEngineer> aMobileEngineer) {
+                mList.clear();
+                mList.addAll(aMobileEngineer);
+                splitResults();
+                mFragmentEmployeeQA.setContent(mQAList);
+                mFragmentEmployeeDev.setContent(mDevList);
+                mFragmentEmployeeProduct.setContent(mProductList);
+//                mAdapter.updateAdapter(mList);
+            }
 
+            @Override
+            public void onError(Exception e) {
+                Toast.makeText(getApplicationContext(), "There was an error", Toast.LENGTH_LONG).show();
+            }
+        });
+        task.execute();
+
+    }
+
+    public void splitResults() {
+
+        for (MobileEngineer engineer : mList) {
+            if (engineer.getPosition().indexOf("Develop") != -1) {
+                mDevList.add(engineer);
+            } else if (engineer.getPosition().indexOf("QA") != -1) {
+                mQAList.add(engineer);
+            } else if (engineer.getPosition().indexOf("Product") != -1) {
+                mProductList.add(engineer);
+            } else {
+                mOtherList.add(engineer);
+            }
+        }
+
+    }
 
     public Advertisement createAd() {
         List<String> adColors = new ArrayList<>();
@@ -84,29 +151,5 @@ public class MainActivity extends AppCompatActivity {
         return ads;
     }
 
-    public void fetchArrayList() {
-        GetMobileDataTask task = new GetMobileDataTask(new IMobileDataTaskCompletedListener() {
-            @Override
-            public void onMobileDataTaskComplete(ArrayList<MobileEngineer> aMobileEngineer) {
-                mList.clear();
-                mList.addAll(aMobileEngineer);
-                mAdapter.updateAdapter(mList);
-            }
-        }, new ICallBackEvent() {
-            @Override
-            public void onComplete(ArrayList<MobileEngineer> aMobileEngineer) {
-                mList.clear();
-                mList.addAll(aMobileEngineer);
-                mAdapter.updateAdapter(mList);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Toast.makeText(getApplicationContext(), "There was an error", Toast.LENGTH_LONG).show();
-            }
-        });
-        task.execute();
-
-    }
 
 }
