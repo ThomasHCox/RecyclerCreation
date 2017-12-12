@@ -56,17 +56,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fetchArrayList();
-        recyclerViewSetup();
+       // recyclerViewSetup();
         mAdapter.updateAdapter(mList);
     }
 
-    private void recyclerViewSetup() {
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mAdapter = new EmployeeRecyclerAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
-    }
 
     public Advertisement createAd() {
         List<String> adColors = new ArrayList<>();
