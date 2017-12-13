@@ -52,7 +52,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     //private EmployeeRecyclerAdapter mAdapter;
-
+    private final int PAGE_QA = 0;
+    private final int PAGE_DEV = 1;
+    private final int PAGE_PRODUCT = 2;
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
     private EmployeeListFragment mFragmentEmployeeDev;
@@ -69,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        fetchArrayList();
-        // recyclerViewSetup();
-//        mAdapter.updateAdapter(mList);
         mViewPager = (ViewPager) findViewById(R.id.mainViewPager);
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mFragmentEmployeeDev = new EmployeeListFragment();
@@ -80,17 +79,37 @@ public class MainActivity extends AppCompatActivity {
         mViewPagerAdapter.addFragment(mFragmentEmployeeQA);
         mViewPagerAdapter.addFragment(mFragmentEmployeeDev);
         mViewPagerAdapter.addFragment(mFragmentEmployeeProduct);
+//        mViewPager.setOffscreenPageLimit(2);
         fetchArrayList();
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case PAGE_QA:
+                        mFragmentEmployeeQA.setContent(mQAList);
+                        break;
+                    case PAGE_DEV:
+                        mFragmentEmployeeDev.setContent(mDevList);
+                        break;
+                    case PAGE_PRODUCT:
+                        mFragmentEmployeeProduct.setContent(mProductList);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
     }
 
     public void fetchArrayList() {
         GetMobileDataTask task = new GetMobileDataTask(new IMobileDataTaskCompletedListener() {
             @Override
             public void onMobileDataTaskComplete(ArrayList<MobileEngineer> aMobileEngineer) {
-                mList.clear();
-                mList.addAll(aMobileEngineer);
-//                mAdapter.updateAdapter(mList);
             }
         }, new ICallBackEvent() {
             @Override
@@ -101,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 mFragmentEmployeeQA.setContent(mQAList);
                 mFragmentEmployeeDev.setContent(mDevList);
                 mFragmentEmployeeProduct.setContent(mProductList);
-//                mAdapter.updateAdapter(mList);
             }
 
             @Override
