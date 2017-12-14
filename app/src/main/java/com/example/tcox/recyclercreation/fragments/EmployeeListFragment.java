@@ -9,16 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.tcox.recyclercreation.EmployeeRecyclerAdapter;
 import com.example.tcox.recyclercreation.R;
-import com.example.tcox.recyclercreation.interfaces.ICallBackEvent;
-import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedListener;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
-import com.example.tcox.recyclercreation.tasks.GetMobileDataTask;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,9 +44,9 @@ public class EmployeeListFragment extends Fragment {
 
     }
 
-    public void setContent(List<MobileEngineer> aMobileEngineers){
-        if (aMobileEngineers.size() != 0) {
-            mAdapter.updateAdapter(aMobileEngineers);
+    public void setContent(List<MobileEngineer> mobileEngineers){
+        if (mobileEngineers != null && mobileEngineers.size() > 0) {
+            mAdapter.updateAdapter(mobileEngineers);
         }
     }
 

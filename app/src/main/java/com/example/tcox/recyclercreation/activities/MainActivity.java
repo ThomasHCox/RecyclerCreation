@@ -1,10 +1,13 @@
-package com.example.tcox.recyclercreation;
+package com.example.tcox.recyclercreation.activities;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.tcox.recyclercreation.R;
+import com.example.tcox.recyclercreation.ViewPagerAdapter;
+import com.example.tcox.recyclercreation.fragments.ButtonFragment;
 import com.example.tcox.recyclercreation.fragments.EmployeeListFragment;
 import com.example.tcox.recyclercreation.interfaces.ICallBackEvent;
 import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedListener;
@@ -49,9 +52,14 @@ import java.util.Random;
 //Make the fragments take the lists so that it will show them.
 //Create a new fragment with a simple view
 
+//Homework 20
+//Make sure everything is checked in to github
+//Create a new branch off master in Github called OKHTTP Demo
+//Replace existing network calls with OK HTTP
+//Teach Pat how to use OK HTTP
+
 
 public class MainActivity extends AppCompatActivity {
-    //private EmployeeRecyclerAdapter mAdapter;
     private final int PAGE_QA = 0;
     private final int PAGE_DEV = 1;
     private final int PAGE_PRODUCT = 2;
@@ -60,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private EmployeeListFragment mFragmentEmployeeDev;
     private EmployeeListFragment mFragmentEmployeeQA;
     private EmployeeListFragment mFragmentEmployeeProduct;
+    private ButtonFragment mButtonFragment;
     private List<MobileEngineer> mList = new ArrayList<MobileEngineer>();
     private List<MobileEngineer> mDevList = new ArrayList<>();
     private List<MobileEngineer> mQAList = new ArrayList<>();
@@ -76,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
         mFragmentEmployeeDev = new EmployeeListFragment();
         mFragmentEmployeeProduct = new EmployeeListFragment();
         mFragmentEmployeeQA = new EmployeeListFragment();
+        mButtonFragment = new ButtonFragment();
         mViewPagerAdapter.addFragment(mFragmentEmployeeQA);
         mViewPagerAdapter.addFragment(mFragmentEmployeeDev);
         mViewPagerAdapter.addFragment(mFragmentEmployeeProduct);
-//        mViewPager.setOffscreenPageLimit(2);
+        mViewPagerAdapter.addFragment(mButtonFragment);
+        mViewPager.setOffscreenPageLimit(2);
         fetchArrayList();
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
