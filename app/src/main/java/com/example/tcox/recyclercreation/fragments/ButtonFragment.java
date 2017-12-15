@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tcox.recyclercreation.R;
-import com.example.tcox.recyclercreation.activities.funWithFragmentsActivity;
+import com.example.tcox.recyclercreation.activities.FunWithFragmentsActivity;
 
 /**
  * Created by tcox on 12/13/17.
@@ -28,7 +28,7 @@ public class ButtonFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), funWithFragmentsActivity.class);
+                Intent intent = new Intent(getContext(), FunWithFragmentsActivity.class);
                 startActivity(intent);
             }
         });

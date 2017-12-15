@@ -58,6 +58,8 @@ import java.util.Random;
 //Replace existing network calls with OK HTTP
 //Teach Pat how to use OK HTTP
 
+//Homework 21
+
 
 public class MainActivity extends AppCompatActivity {
     private final int PAGE_QA = 0;
