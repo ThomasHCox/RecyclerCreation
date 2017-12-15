@@ -18,6 +18,10 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.net.URL;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by tcox on 11/28/17.
  */
@@ -26,6 +30,7 @@ public class GetMobileDataTask extends AsyncTask<Void, Void, ArrayList<MobileEng
 
     private IMobileDataTaskCompletedListener iMobileDataTaskCompletedListener;
     private ICallBackEvent mCallBackEvent;
+    private OkHttpClient client = new OkHttpClient();
 
     private final String TAG = GetMobileDataTask.class.getSimpleName();
 
@@ -41,7 +46,7 @@ public class GetMobileDataTask extends AsyncTask<Void, Void, ArrayList<MobileEng
         String responseData;
         responseData = null;
         try {
-            responseData = makeServiceCall(url);
+            responseData = run(url);
         } catch (Exception e) {
             mCallBackEvent.onError(e);
             e.printStackTrace();
@@ -58,40 +63,15 @@ public class GetMobileDataTask extends AsyncTask<Void, Void, ArrayList<MobileEng
         }
     }
 
-    public String makeServiceCall(String reqUrl) throws IOException {
-        String response = null;
 
-        URL url = new URL(reqUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        // read the response
-        InputStream in = new BufferedInputStream(conn.getInputStream());
-        response = convertStreamToString(in);
+    protected String run(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
 
-        return response;
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
-
-    private String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
-    }
-
 
     @Override
     protected void onPostExecute(ArrayList<MobileEngineer> aList) {
