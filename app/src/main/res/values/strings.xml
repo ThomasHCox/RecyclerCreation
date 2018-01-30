@@ -2,6 +2,6 @@
     <string name="app_name">RecyclerCreation</string>
     <string name="fun_text_view_label">I\'m a text view! This is a fun text view.</string>
     <string name="fun_button_label">End Fun</string>
-    <string name="no_fun_text">This is no fun to be here</string>
+    <string name="no_fun_text">This is no fun to be had here</string>
     <string name="start_fun_button_label">Start Fun</string>
 </resources>

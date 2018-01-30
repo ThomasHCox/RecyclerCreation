@@ -34,7 +34,7 @@ public class FunFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_fun, container, false);
-        Button button = (Button) rootView.findViewById(R.id.button_fun);
+        Button button = (Button) rootView.findViewById(R.id.button_stop_fun);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
