@@ -1,11 +1,13 @@
 package com.example.tcox.recyclercreation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tcox.recyclercreation.activities.ContactActivity;
 import com.example.tcox.recyclercreation.interfaces.IEngineerClickedListener;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
 import com.example.tcox.recyclercreation.viewholders.EmployeeViewHolder;
@@ -49,7 +51,8 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         ((EmployeeViewHolder) holder).bind(mList.get(position), new IEngineerClickedListener() {
             @Override
             public void onEngineerClicked(MobileEngineer engineer) {
-
+                Intent i = new Intent(mContext, ContactActivity.class);
+                mContext.startActivity(i);
             }
         });
     }
