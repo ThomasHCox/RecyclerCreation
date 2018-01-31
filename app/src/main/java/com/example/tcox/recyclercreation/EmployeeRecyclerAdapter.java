@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tcox.recyclercreation.interfaces.IEngineerClickedListener;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
 import com.example.tcox.recyclercreation.viewholders.EmployeeViewHolder;
 
@@ -45,7 +46,12 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((EmployeeViewHolder) holder).bind(mList.get(position));
+        ((EmployeeViewHolder) holder).bind(mList.get(position), new IEngineerClickedListener() {
+            @Override
+            public void onEngineerClicked(MobileEngineer engineer) {
+
+            }
+        });
     }
 
     @Override

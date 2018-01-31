@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tcox.recyclercreation.R;
+import com.example.tcox.recyclercreation.interfaces.IEngineerClickedListener;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
 import com.squareup.picasso.Picasso;
 
@@ -43,12 +44,13 @@ public class EmployeeViewHolder extends RecyclerView.ViewHolder {
         mBio = (TextView) itemView.findViewById(R.id.employeeBio);
     }
 
-    public void bind(final MobileEngineer engineer) {
+    public void bind(final MobileEngineer engineer, IEngineerClickedListener listener) {
         mEmployeeTitle.setText(engineer.getPosition());
         mEmployeeName.setText(engineer.getName());
         mEmployeeStartDate.setText(engineer.getStartDate());
         mEmployeeProject.setText(engineer.getProject());
         mBio.setText(engineer.getBio());
         Picasso.with(mContext).load(engineer.getAvatar()).into(mEmployeeAvatar);
+        listener.onEngineerClicked(engineer);
     }
 }

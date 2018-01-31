@@ -3,6 +3,8 @@ package com.example.tcox.recyclercreation.activities;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.tcox.recyclercreation.R;
@@ -14,6 +16,7 @@ import com.example.tcox.recyclercreation.interfaces.IMobileDataTaskCompletedList
 import com.example.tcox.recyclercreation.models.Advertisement;
 import com.example.tcox.recyclercreation.models.MobileEngineer;
 import com.example.tcox.recyclercreation.tasks.GetMobileDataTask;
+import com.example.tcox.recyclercreation.tasks.GetVersionTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mViewPager = (ViewPager) findViewById(R.id.mainViewPager);
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mFragmentEmployeeDev = new EmployeeListFragment();
         mFragmentEmployeeProduct = new EmployeeListFragment();
         mFragmentEmployeeQA = new EmployeeListFragment();
         mButtonFragment = new ButtonFragment();
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 splitResults();
                 mFragmentEmployeeQA.setContent(mQAList);
                 mFragmentEmployeeDev.setContent(mDevList);
-                mFragmentEmployeeProduct.setContent(mProductList);
             }
 
             @Override
@@ -180,6 +181,27 @@ public class MainActivity extends AppCompatActivity {
 
         Advertisement ads = new Advertisement((adColors.get(rnd.nextInt(adColors.size()))), (adCompany.get(rnd.nextInt(adCompany.size()))));
         return ads;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_download)
+        {
+            downloadVer();
+        }
+        return true;
+    }
+
+    private void downloadVer ()
+    {
+        GetVersionTask gvt = new GetVersionTask();
+        gvt.execute();
     }
 
 
