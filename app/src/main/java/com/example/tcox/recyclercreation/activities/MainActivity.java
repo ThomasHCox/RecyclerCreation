@@ -62,6 +62,8 @@ import java.util.Random;
 //Teach Pat how to use OK HTTP
 
 //Homework 21
+//On a branch create the fragment XML that Pat showed
+//See if I can get the No Fun Fragment to appear and get back to Fun Fragment
 
 
 public class MainActivity extends AppCompatActivity {

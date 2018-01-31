@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fun_button_label"
-        android:id="@+id/button_fun" />
+        android:id="@+id/button_stop_fun" />
+
 
 
 </LinearLayout>
